@@ -14,8 +14,8 @@ body {
   .sudoku-board {
     display: grid;
     grid-template-rows: repeat(9, 1fr);
-    width: 600px; /* Increase the width */
-    height: 600px; /* Increase the height */
+    width: 600px; 
+    height: 600px; 
     border: 2px solid #000;
     box-sizing: border-box;
     margin-top: 20px;
@@ -30,13 +30,13 @@ body {
     width: 100%;
     height: 100%;
     text-align: center;
-    font-size: 2rem; /* Increase font size */
+    font-size: 2rem; 
     border: 1px solid #ccc;
     box-sizing: border-box;
   }
   
   .sudoku-cell.prefilled {
-    background-color: #d3d3d3; /* Light grey background for prefilled cells */
+    background-color: #d3d3d3; 
   }
   
   .sudoku-cell:focus {
