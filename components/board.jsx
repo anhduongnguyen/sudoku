@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+// Initial setup of the board
 const initialBoard = [
   ['', '', '', '7', '', '', '6', '', ''],
   ['9', '', '', '', '', '4', '', '1', ''],
