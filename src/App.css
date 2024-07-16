@@ -1,84 +1,172 @@
 body {
-    background-color: #f5f5f5;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+p {
+  font-size: 20px;
+}
+
+Button {
+  background-color: #D3D3D3 !important;
+  color: black !important;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.timer-container {
+  margin-left: 16.5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.main-section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+}
+
+.board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 2;
+}
+
+.right-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  margin-left: 20px;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.rules {
+  border: 2px solid #000;
+  border-radius: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 640px;
+  text-align: left;
+}
+
+.sudoku-board {
+  display: grid;
+  grid-template-rows: repeat(9, 1fr);
+  width: 650px;
+  height: 650px; 
+  border: 2px solid #000;
+  box-sizing: border-box;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.sudoku-row {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+}
+
+.sudoku-cell {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 2rem; 
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+
+.sudoku-cell.prefilled {
+  background-color: #d3d3d3; 
+}
+
+.sudoku-cell:focus {
+  outline: none;
+  border-color: #000;
+}
+
+.sudoku-cell:nth-child(3n) {
+  border-right: 2px solid #000;
+}
+
+.sudoku-row:nth-child(3n) .sudoku-cell {
+  border-bottom: 2px solid #000;
+}
+
+.sudoku-cell:nth-child(1) {
+  border-left: 2px solid #000;
+}
+
+.sudoku-row:nth-child(1) .sudoku-cell {
+  border-top: 2px solid #000;
+}
+
+@media (max-width: 768px) {
+  .main-section {
+      flex-direction: column;
+      align-items: center;
   }
-  
+
+  .right-container {
+      margin-left: 0;
+      margin-top: 20px;
+  }
+
+  .rules {
+      margin-left: 10px;
+      margin-right: 10px;
+  }
+
+  .legend, .timer-container {
+      max-width: 100%;
+  }
+
   h1 {
-    margin-top: 20px;
-    padding-top: 50px;
-    padding-bottom: 15px;
+      margin-left: 0;
+      text-align: center;
+  }
+}
+
+@media (max-width: 1024px) {
+  .legend, .timer-container, .rules, .sudoku-board {
+      margin-left: 50px;
+      margin-right: 50px;
   }
 
-  p{
-    font-size: 20px;
+  .rules {
+      margin-left: 30px;
+      margin-right: 30px;
   }
 
-  .rules{
-    border-top: 2px solid #000;
-    border-bottom: 2px solid #000;
-    border-left: 2px solid #000;
-    border-right: 2px solid #000;
-    border-radius: 30px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: #ffffff;
-    padding-left: 20px;
-    padding-right: 10px;
+  h1 {
+      margin-left: 0;
+      text-align: center;
   }
-  
-  .sudoku-board {
-    display: grid;
-    grid-template-rows: repeat(9, 1fr);
-    width: 600px; 
-    height: 600px; 
-    border: 2px solid #000;
-    box-sizing: border-box;
-    margin-top: 20px;
-    margin-bottom: 50px;
-  }
-  
-  .sudoku-row {
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-  }
-  
-  .sudoku-cell {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    font-size: 2rem; 
-    border: 1px solid #000000;
-    box-sizing: border-box;
-  }
-  
-  .sudoku-cell.prefilled {
-    background-color: #d3d3d3; 
-  }
-  
-  .sudoku-cell:focus {
-    outline: none;
-    border-color: #000;
-  }
-  
-  .sudoku-cell:nth-child(3n) {
-    border-right: 2px solid #000;
-  }
-  
-  .sudoku-row:nth-child(3n) .sudoku-cell {
-    border-bottom: 2px solid #000;
-  }
-  
-  .sudoku-cell:nth-child(1) {
-    border-left: 2px solid #000;
-  }
-  
-  .sudoku-row:nth-child(1) .sudoku-cell {
-    border-top: 2px solid #000;
-  }
-  
+}
