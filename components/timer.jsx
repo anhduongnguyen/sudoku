@@ -14,7 +14,7 @@ export default function GameTimer({ expiryTimestamp, onExpire }) {
 
     const restartTimer = () => {
         const time = new Date();
-        time.setSeconds(time.getSeconds() + 30);
+        time.setSeconds(time.getSeconds() + 300);
         restart(time)
     };
 
