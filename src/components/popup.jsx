@@ -1,16 +1,18 @@
 import React from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
+import Table from './table';
 
-// Pop up at the end of the game
-const EndPopup = ({ isOpen, toggle }) => {
+const EndPopup = ({ isOpen, toggle, data }) => {
   return (
     <Modal isOpen={isOpen} toggle={toggle}>
       <ModalHeader toggle={toggle}>Time's Up!</ModalHeader>
       <ModalBody>
-        Out of 648 participants, based on your performance, you are in the bottom 10% of players. 
+        Out of 648 participants, your performance places you in the bottom 10% of players.<br /><br />
+        These are your game stats compared to the average player:
+        <Table data={data} />
       </ModalBody>
       <ModalFooter>
-        <Button color="primary" onClick={toggle}>Close</Button>
+        <Button onClick={toggle}>Close</Button>
       </ModalFooter>
     </Modal>
   );

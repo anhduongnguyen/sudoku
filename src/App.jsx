@@ -1,29 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import Board from '../components/board';
-import Rules from '../components/rules';
-import EndPopup from '../components/popup';
-import GameTimer from '../components/timer';
-import ChatBox from '../components/chatbox';
+import Board from './components/board';
+import EndPopup from './components/popup';
+import GameTimer from './components/timer';
+import ChatBox from './components/chatbox';
+import Rules from './components/rules';
+import { Button } from 'reactstrap';
+import useGameState from './utils/gameState';
 
 const App = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [messages, setMessages] = useState([]);
-  
+  const {
+    isModalOpen,
+    isRulesOpen,
+    timerStart,
+    messages,
+    endGameData,
+    handleExpire,
+    toggleModal,
+    toggleRulesModal,
+    addMessage,
+  } = useGameState();
+
   const time = new Date();
-  time.setSeconds(time.getSeconds() + 300); // 5 mins game
-
-  const handleExpire = () => {
-    setIsModalOpen(true);
-  };
-
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
-
-  const addMessage = (message) => {
-    setMessages((prevMessages) => [...prevMessages, message]);
-  };
+  time.setSeconds(time.getSeconds() + 300); 
 
   return (
     <div className="app-container">
@@ -31,10 +30,13 @@ const App = () => {
         <div className="board-container">
           <h1>Sudoku</h1>
           <Board addMessage={addMessage} />
+          <div className="rules-button">
+            <Button size="lg" onClick={toggleRulesModal}>Rules</Button>
+          </div>
         </div>
         <div className="right-container">
           <div className="timer-container">
-            <GameTimer expiryTimestamp={time} onExpire={handleExpire} />
+            {timerStart && <GameTimer expiryTimestamp={time} onExpire={handleExpire} />}
           </div>
           <div className="legend">
             <img src="/icons/iconlegend.png" alt="Legend" />
@@ -42,11 +44,8 @@ const App = () => {
           <ChatBox messages={messages} />
         </div>
       </div>
-      <div className='rules'>
-        <h2> Rules</h2>
-        <Rules />
-      </div>
-      <EndPopup isOpen={isModalOpen} toggle={toggleModal} />
+      <Rules isOpen={isRulesOpen} toggle={toggleRulesModal} />
+      <EndPopup isOpen={isModalOpen} toggle={toggleModal} data={endGameData} />
     </div>
   );
 };

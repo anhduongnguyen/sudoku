@@ -49,6 +49,13 @@ Button {
   flex-direction: column;
   align-items: center;
   flex: 2;
+  position: relative; 
+}
+
+.rules-button {
+  position: absolute;
+  bottom: -47px;
+  left: 70px;
 }
 
 .right-container {
@@ -66,31 +73,18 @@ Button {
   max-width: 300px;
 }
 
-.rules {
-  border: 2px solid #000;
-  border-radius: 30px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 20px;
-  background-color: #ffffff;
-  width: 100%;
-  max-width: 640px;
-  text-align: left;
-}
-
 .chat-box {
   border: 2px solid #000;
   border-radius: 30px;
   padding: 10px;
   background-color: #fff;
   width: 330px; 
-  height: 170px; 
-  overflow-y: auto; 
   margin-top: 20px;
   margin-left: 10px;
 }
 
 .chat-messages {
+  height: 150px; 
   overflow-y: auto;
 }
 
@@ -110,6 +104,7 @@ Button {
   margin: 0;
   font-size: 20px;
 }
+
 .sudoku-board {
   display: grid;
   grid-template-rows: repeat(9, 1fr);
@@ -180,11 +175,6 @@ Button {
       margin-top: 20px;
   }
 
-  .rules {
-      margin-left: 10px;
-      margin-right: 10px;
-  }
-
   .legend, .timer-container {
       max-width: 100%;
   }
@@ -196,14 +186,9 @@ Button {
 }
 
 @media (max-width: 1024px) {
-  .legend, .timer-container, .rules, .sudoku-board {
+  .legend, .timer-container, .sudoku-board {
       margin-left: 50px;
       margin-right: 50px;
-  }
-
-  .rules {
-      margin-left: 30px;
-      margin-right: 30px;
   }
 
   h1 {
@@ -212,3 +197,33 @@ Button {
   }
 }
 
+table {
+  margin-top: 15px;
+  border: 2px solid rgb(10, 0, 0);
+  width: 460px;
+  height: 200px;
+  text-align: center;
+}
+
+th {
+  border-bottom: 1px solid black;
+}
+
+td {
+  padding-top: 7px ;
+  padding-bottom: 7px;
+}
+
+table th:first-child {
+  text-align: left;
+  padding-left: 60px;
+}
+
+table td:first-child {
+  text-align: left;
+  padding-left: 15px;
+}
+
+.rules-modal{
+  min-width: 45% 
+}

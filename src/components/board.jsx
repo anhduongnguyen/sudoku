@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-
 const initialBoard = [
   ['', '', '', '7', '', '', '6', '', ''],
   ['9', '', '', '', '', '4', '', '1', ''],
@@ -37,10 +36,16 @@ const iconMessages = [
   "SYSTEM: MISS"
 ];
 
-const probabilityThreshold = 0.3;
+const overallProbabilityThreshold = 0.50; // Overall probability of an icon appearing
+const repeatIconProbability = 0.40; // Probability of choosing icons 6-9
 
 const getRandomIcon = () => {
-  return icons[Math.floor(Math.random() * 5)];
+  const random = Math.random();
+  if (random < repeatIconProbability) {
+    return icons[5 + Math.floor(Math.random() * 4)];
+  } else {
+    return icons[Math.floor(Math.random() * 5)];
+  }
 };
 
 const getRandomRepeatIcon = () => {
@@ -51,14 +56,12 @@ const Board = ({ addMessage }) => {
   const [board, setBoard] = useState(initialBoard.map(row => row.map(cell => ({ value: cell, readOnly: cell !== '' }))));
   const [iconMappings, setIconMappings] = useState({});
 
-  // Check row and column for repeats
   const checkForRepeats = (value, row, col) => {
     for (let i = 0; i < 9; i++) {
       if (i !== col && board[row][i].value === value) return true; 
       if (i !== row && board[i][col].value === value) return true; 
     }
 
-    // Check 3x3 subgrid for repeats
     const startRow = Math.floor(row / 3) * 3;
     const startCol = Math.floor(col / 3) * 3;
     for (let i = startRow; i < startRow + 3; i++) {
@@ -82,12 +85,10 @@ const Board = ({ addMessage }) => {
       if (value) {
         if (!iconMappings[cellKey]) {
           let icon = null;
-          if (checkForRepeats(value, row, col)) {
-            if (Math.random() < probabilityThreshold) {
+          if (Math.random() < overallProbabilityThreshold) {
+            if (checkForRepeats(value, row, col)) {
               icon = getRandomRepeatIcon();
-            }
-          } else {
-            if (Math.random() < probabilityThreshold) {
+            } else {
               icon = getRandomIcon();
             }
           }
